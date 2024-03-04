@@ -19,14 +19,15 @@ public class LetterService {
 		this.memberRepository = memberRepository;
 	}
 
-	public LetterDto saveLetter(LetterDto letterDto, Long memberId) {
-		Member receiver = memberRepository.findById(memberId)
+	public LetterDto saveLetter(LetterDto letterDto, String email) {
+		Member receiver = memberRepository.findByEmail(email)
 				.orElseThrow(() -> new IllegalArgumentException("Receiver not found"));
 
 		Letter letter = new Letter();
 		letter.setContent(letterDto.getContent());
 		letter.setCreateUsername(letterDto.getCreateUsername());
 		letter.setReceiver(receiver);
+		letter.setLetterNumeber(letterDto.getLetterNumber());
 
 		receiver.getLetters().add(letter); // 양방향 관계 설정
 

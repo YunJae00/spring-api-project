@@ -21,9 +21,9 @@ public class LetterController {
 		this.letterService = letterService;
 	}
 
-	@PostMapping("/create/{memberId}")
-	public ResponseEntity<LetterDto> create(@RequestBody LetterDto letterDto, @PathVariable Long memberId) {
-		return ResponseEntity.ok(letterService.saveLetter(letterDto, memberId));
+	@PostMapping("/create/{email}")
+	public ResponseEntity<LetterDto> create(@RequestBody LetterDto letterDto, @PathVariable String email) {
+		return ResponseEntity.ok(letterService.saveLetter(letterDto, email));
 	}
 
 	@GetMapping("/test")

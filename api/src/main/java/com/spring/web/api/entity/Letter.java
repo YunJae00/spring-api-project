@@ -28,6 +28,9 @@ public class Letter {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
+	@Column(name = "letter_number")
+	private Long letterNumber;
+
 	@PrePersist
 	public void prePersist() {
 		this.createdAt = LocalDateTime.now();
@@ -41,12 +44,14 @@ public class Letter {
 		super();
 	}
 
-	public Letter(Long id, String content, String createUsername, LocalDateTime createdAt, Member receiver) {
+	public Letter(Long id, String content, String createUsername, LocalDateTime createdAt, Long letterNumber,
+			Member receiver) {
 		super();
 		this.id = id;
 		this.content = content;
 		this.createUsername = createUsername;
 		this.createdAt = createdAt;
+		this.letterNumber = letterNumber;
 		this.receiver = receiver;
 	}
 
@@ -89,4 +94,13 @@ public class Letter {
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
+
+	public Long getLetterNumber() {
+		return letterNumber;
+	}
+
+	public void setLetterNumeber(Long letterNumber) {
+		this.letterNumber = letterNumber;
+	}
+
 }

@@ -7,19 +7,21 @@ public class LetterDto {
 
 	private String createUsername;
 	private String content;
+	private Long letterNumber;
 
 	public LetterDto() {
 		super();
 	}
 
-	public LetterDto(String createUsername, String content) {
+	public LetterDto(String createUsername, String content, Long letterNumber) {
 		super();
 		this.createUsername = createUsername;
 		this.content = content;
+		this.letterNumber = letterNumber;
 	}
 
 	public static LetterDto of(Letter letter) {
-		return new LetterDto(letter.getCreateUsername(), letter.getContent());
+		return new LetterDto(letter.getCreateUsername(), letter.getContent(), letter.getLetterNumber());
 	}
 
 	public Letter toLetter(Member receiver) {
@@ -27,6 +29,7 @@ public class LetterDto {
 		letter.setContent(content);
 		letter.setCreateUsername(createUsername);
 		letter.setReceiver(receiver);
+		letter.setLetterNumeber(letterNumber);
 		return letter;
 	}
 
@@ -44,6 +47,14 @@ public class LetterDto {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public Long getLetterNumber() {
+		return letterNumber;
+	}
+
+	public void setLetterNumber(Long letterNumber) {
+		this.letterNumber = letterNumber;
 	}
 
 }
